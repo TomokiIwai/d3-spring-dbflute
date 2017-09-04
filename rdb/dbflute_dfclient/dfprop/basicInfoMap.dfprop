@@ -1,0 +1,6 @@
+map:{
+    ; database = mysql
+    ; targetLanguage = java
+    ; targetContainer = spring
+    ; packageBase = com.example.tomokiiwai.rdb
+}

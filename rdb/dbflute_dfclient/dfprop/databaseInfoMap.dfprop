@@ -1,0 +1,10 @@
+map:{
+    ; driver   = com.mysql.jdbc.Driver
+    ; url      = jdbc:mysql://127.0.0.1:3306/d3db
+    ; schema   =
+    ; user     = d3dev
+    ; password = d3dev
+
+    ; propertiesMap = map:{}
+    ; variousMap = map:{}
+}

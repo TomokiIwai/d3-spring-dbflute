@@ -1,0 +1,50 @@
+buildscript {
+    ext {
+        dbfluteVersion = '1.1.4'
+        springBootVersion = '1.5.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+        runtime('mysql:mysql-connector-java')
+
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+    }
+}
+
+project(':rdb') {
+    bootRepackage.enabled = false
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}")
+        compile("org.dbflute:dbflute-runtime:${dbfluteVersion}")
+    }
+}
+
+project(':app') {
+    apply plugin: 'application'
+
+    mainClassName = 'com.example.tomoki.iwai.D3SpringDbfluteApplication'
+    applicationName = 'app'
+
+    dependencies {
+        compile project(':rdb')
+    }
+}
